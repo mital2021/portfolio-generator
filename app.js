@@ -1,4 +1,5 @@
-const fs = require('fs');
+const fs = require('fs')
+
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
 
@@ -47,9 +48,9 @@ const promptUser = () => {
 
 const promptProject = portfolioData => {
   console.log(`
-=================
+
 Add a New Project
-=================
+
 `);
 
   // If there's no 'projects' array property, create one
@@ -137,3 +138,18 @@ promptUser()
     //   console.log('Page created! Check out index.html in this directory to see it!');
     // });
   });
+
+
+const generatePage = require('./src/page-template.js');
+
+const profileDataArgs = process.argv.slice(2);
+
+const [name, github] = profileDataArgs;
+
+
+fs.writeFile('./index.html', generatePage('Mital', 'github'), err => {
+  if (err) throw new Error(err);
+
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
+
